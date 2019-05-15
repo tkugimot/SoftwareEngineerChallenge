@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group 'paypay.ne.jp'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.junit', name: 'junit5-engine', version: '5.0.0-ALPHA'
+}
+

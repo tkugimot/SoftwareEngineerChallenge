@@ -1,0 +1,13 @@
+### IntelliJ IDEA ###
+task1/java/.idea
+task1/java/*.iws
+task1/java/*.iml
+task1/java/*.ipr
+task1/java/out/
+
+### gradle ###
+task1/java/.gradle
+task1/java/build/
+!gradle/wrapper/gradle-wrapper.jar
+.DS_Store
+
