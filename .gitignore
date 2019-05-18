@@ -1,9 +1,15 @@
-### IntelliJ IDEA ###
+### Java ###
 task1/java/.idea
 task1/java/*.iws
 task1/java/*.iml
 task1/java/*.ipr
 task1/java/out/
+
+### Scala ###
+task1/scala/.idea
+task1/scala/target
+task1/scala/project/target
+task1/scala/.idea
 
 ### gradle ###
 task1/java/.gradle
