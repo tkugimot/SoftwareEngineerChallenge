@@ -43,11 +43,6 @@ class ImmutableQueueTest {
     void test_head_normal() {
         assertThat(integerImmutableQueue.head()).isEqualTo(1);
         assertThat(stringImmutableQueue.head()).isEqualTo("a");
-    }
-
-    @Test
-    @DisplayName("test head() abnormal")
-    void test_head_abnormal() {
         assertThrows(NoSuchElementException.class, () -> emptyImmutableQueue.head());
     }
 
@@ -73,7 +68,6 @@ class ImmutableQueueTest {
     void test_deQueue_create_a_new_ImmutableQueue_instance() {
         assertThat(stringImmutableQueue.head()).isEqualTo("a");
         Queue<String> deQueuedStringImmutableQueue = stringImmutableQueue.deQueue();
-        assertThat(stringImmutableQueue.head()).isEqualTo("a");
         assertThat(deQueuedStringImmutableQueue.head()).isEqualTo("b");
     }
 
