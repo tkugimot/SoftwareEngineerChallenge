@@ -1,11 +1,13 @@
 import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ImmutableQueueTest {
@@ -37,10 +39,16 @@ class ImmutableQueueTest {
     }
 
     @Test
-    @DisplayName("test head()")
-    void test_head() {
+    @DisplayName("test head() normal")
+    void test_head_normal() {
         assertThat(integerImmutableQueue.head()).isEqualTo(1);
         assertThat(stringImmutableQueue.head()).isEqualTo("a");
+    }
+
+    @Test
+    @DisplayName("test head() abnormal")
+    void test_head_abnormal() {
+        assertThrows(NoSuchElementException.class, () -> emptyImmutableQueue.head());
     }
 
     /**
