@@ -16,7 +16,7 @@
 
 <br></br>
 ## Design
-According to the requirements and analysis described above, I suggest the following design.
+According to the requirements and its analysis described above, I suggest the following design.
 <br></br>
 <br></br>
 ![diagram](./task2-pic.png)
@@ -25,7 +25,7 @@ According to the requirements and analysis described above, I suggest the follow
 
 
 ### Micro services (with Fluentd)
-Log collecting and send it to Kafka servers.
+For log collecting and sending it to Kafka servers.
 
 Each service receives many kinds of logs such as app logs, access logs and system logs from production servers.
 Use Fluentd to unify these logs and send it to Kafka servers.
@@ -36,7 +36,7 @@ It must keep these logs in each local storage unless sending logs succeed.
 
 <br></br>
 ### Kafka
-Persistent store and streaming pipe. Kafka can stream data continuously from a source. Aggregating all logs on Kafka and send it to Spark Streaming.
+For persistent store and streaming pipe. Kafka can stream data continuously from a source. Aggregating all logs on Kafka and send it to Spark Streaming.
 
 It must store data for 1 year in case of bugs in the processing logic.
 
@@ -44,19 +44,19 @@ It must store data for 1 year in case of bugs in the processing logic.
 
 <br></br>
 ### Spark Streaming
-Micro batch process for the stream data from Kafka. Process this stream of data instantly with its in-memory processing primitive, and update the Casandra table after the process.
+For micro batch process for the stream data from Kafka. It Processes this stream of data instantly with its in-memory processing primitive, and update the Casandra table after the process.
 
 [Spark Streaming](https://spark.apache.org/streaming/) brings Apache Spark's language-integrated API to stream processing, letting you write streaming jobs the same way you write batch jobs. It supports Java, Scala and Python.
 
 <br></br>
 ### Casandra
-Storing the result of the micro batch process.
+For storing the result of the micro batch process.
 
 [Casandra](http://cassandra.apache.org/) is an extremely powerful open source distributed database system that works extremely well to handle huge volumes of records. 
 
 <br></br>
 ### API servers
-Query data from Casandra, format and provide it to client side.
+For querying data from Casandra, formatting and providing it to client side.
 
 <br></br>
 ### Other aspects
