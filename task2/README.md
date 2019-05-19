@@ -17,7 +17,11 @@
 ## Design
 According to the requirements and analysis described above, I suggest the following design.
 
+
+
 ![diagram](./task2-pic.png)
+
+
 
 ### Micro services with Fluentd
 Log collecting and send it to Kafka servers.
