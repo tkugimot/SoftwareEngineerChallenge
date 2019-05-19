@@ -10,7 +10,7 @@
 ## System requirements analysis
 - write volume: 10 billions events per day lead to 120K events per second.
 - read volume: 100 millions query data per day lead to 1.2K query per second.
-- update analytical results real-time normally, at most one hour delay.
+- update analytical results semi-real-time normally, at most one hour delay.
 - 99.99% uptime.
 - store historical data for 1 year for future use.
 
@@ -30,7 +30,7 @@ For log collecting and sending it to Kafka servers.
 Each service receives many kinds of logs such as app logs, access logs and system logs from production servers.
 Use Fluentd to unify these logs and send it to Kafka servers.
 
-It must keep these logs in each local storage unless sending logs succeed.
+It must keep these logs in each local storage for 1 year for future use.
 
 [Fluentd](https://www.fluentd.org/) is an open source data collector for unified logging layer.
 
@@ -41,18 +41,21 @@ For persistent store and streaming pipe. Kafka can stream data continuously from
 It must store data for 1 year in case of bugs in the processing logic.
 
 [Kafka](https://kafka.apache.org/) is an open source software which provides a framework for storing, reading and analysing streaming data. It is a popular distributed pub-sub messaging platform that offers persistent store and high scalability. 
+The partitions of the log are distributed over the servers in the Kafka cluster with each server handling data and requests for a share of the partitions. Each partition is replicated across a configurable number of servers for fault tolerance.
+
 
 <br></br>
 ### Spark Streaming
 For micro batch process for the stream data from Kafka. It Processes this stream of data instantly with its in-memory processing primitive, and update the Casandra table after the process.
 
 [Spark Streaming](https://spark.apache.org/streaming/) brings Apache Spark's language-integrated API to stream processing, letting you write streaming jobs the same way you write batch jobs. It supports Java, Scala and Python.
+Spark Streaming recovers both lost work and operator state out of the box, without any extra code on your part.
 
 <br></br>
 ### Casandra
-For storing the result of the micro batch process.
+For storing the result of the micro batch processes of Spark Streaming.
 
-[Casandra](http://cassandra.apache.org/) is an extremely powerful open source distributed database system that works extremely well to handle huge volumes of records. 
+[Casandra](http://cassandra.apache.org/) is an extremely powerful open source distributed database system that works extremely well to handle huge volumes of records with minimum downtime. 
 
 <br></br>
 ### API servers
